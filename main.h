@@ -1,6 +1,5 @@
-/*declaring header guards*/
-#ifndef "MAIN_H"
-#define "MAIN_H"
+#ifndef MAIN_H
+#define MAIN_H
 
 /*including standard C libraries*/
 #include <unistd.h>
@@ -23,9 +22,9 @@
 #define SIZE_SHORT 1
 
 /**
- * @struct FormatSpecifier - Structure to represent a format specifier
+ * struct FormatSpecifier - Structure to represent a format specifier
  * @specifier: format specifier character
- * @handler_fuction: functon associated with the specifier
+ * @handler_function: functon associated with the specifier
  */
 struct FormatSpecifier
 
@@ -35,14 +34,16 @@ struct FormatSpecifier
 };
 
 /**
- * @typedef FormatSpecifier format_t - Typedef for the FormatSpecifier structure
+ * typedef FormatSpecifier format_t - Typedef for the FormatSpecifier
+ * structure
  */
 typedef struct FormatSpecifier format_t;
 
 int _printf(const char *format, ...);
-int process_format(const char *specifier, int *index, va_list arguments, char buffer[], int flags, int width, int precision, int size);
+int process_format(const char *specifier, int *index, va_list arguments,
+		char buffer[], int flags, int width, int precision, int size);
 
 /*function implementatio*/
 
 
-#endif 
+#endif /*MAIN_H*/
