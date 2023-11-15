@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	for (count = 0; format && format[count] != '\0'; i++)
+	for (count = 0; format && format[count] != '\0'; count++)
 	{
 		if (format[count] != '%')
 		{
@@ -32,13 +32,15 @@ int _printf(const char *format, ...)
 		else
 		{
 			_printf_buffer(buffer, &buffer_index);
-			flags = extract_flags(format, &count);
-			width = extract_width(format, &count, args);
-			precision = extract_precision(format, &count, args);
-			size = extract_size(format, &count);
+			/**
+			 * flags = extract_flags(format, &count);
+			 * width = extract_width(format, &count, args);
+			 * precision = extract_precision(format, &count, args);
+			 * size = extract_size(format, &count);
+			 */
 			++count;
-			printed = handle_print(format, &count, args, buffer,
-				flags, width, precision, size);
+			/*printed = handle_print(format, &count, args,
+			 * buffer,flags, width, precision, size);*/
 			if (printed == -1)
 				return (-1);
 			printed_chars += printed;
