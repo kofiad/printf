@@ -3,11 +3,11 @@
 /**
  * get_flag - identifies flags
  * @flag: character that holds a flag specifier
- * @p: pointer to the struct Flag
+ * @p: pointer to the struct flag
  * Return: 1 if a flag has been turned on
  * 0 otherwise
  */
-int extract_flags(char flag, Flag_t *p);
+int extract_flags(char flag, flag_t *p)
 {
 	int i = 0;
 

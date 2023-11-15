@@ -34,7 +34,7 @@ int _puts(char *str)
 {
 	register int a;
 
-	for (a = 0; str[a] != '\0'; i++)
+	for (a = 0; str[a] != '\0'; a++)
 		_putchar(str[a]);
 	return (a);
 }
