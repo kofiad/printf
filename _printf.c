@@ -8,39 +8,39 @@ include "main.h"
  */
 int _printf(const char *format, ...)
 {
+	int (*function_pointer, Flag_t *);
 	va_list args;
-	int char_count = 0;
+	const char *w;
+	Flag_t Flag = {0, 0, 0,};
+
+	register int char_count = 0;
 
 	va_start(args, format);
 
-	while (*format != '\0')
-	{
-		if (*format == '%' && *(format + 1) != '\0')
+		if ((format[0]  == '%' && *!format[1]) || !format)
+			return (-1);
+		if (format[0] == '%' && format[1] == ' ' && !format[2])
+			return (-1);
+		for (w = format; *w; w++)
 		{
-			format++;/*move past '%'*/
-			switch (*format)
+			if (*w == '%')
 			{
-				case 'c':
-					char_count += write(1, &va_arg(args, int), 1);
-				break;
-				case 's':
-				char_count += write(1, va_arg(args, char*), write(va_arg(args, char*), 1));
-				break;
-				case '%';
-				char_count += write(1, "%", 1);
-				break;
-				default:
-				write(1, format, 1);
-				char_count++;
+				if (*w == '%')
+				{
+					char_count += _putchar('%');
+					continue;
+				}
+				while (extract_flag(*w, &flag))
+					w++;
+				pointer_function = extract_print(*w);
+				char_count += pointer_function
+					? pointer_function(args, &flag)
+					: _printf("%%%c", *w);
 			}
-		}
 		else
-		{
-			write(1, format, 1);
-			char_count++;
+			char_count += _putchar(*w);
 		}
-		format++;
-	}
-	va_end(args);
-	return (char_count);
+		_putchar(-1);
+		va_end(args);
+		return (char_count);
 }
