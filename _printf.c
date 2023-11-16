@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		{"r", print_reversed},
 		{"R", print_rot13_string},
 	};
-	va_list arg list;
+	va_list arg_list;
 
 	if (format == NULL)
 		return (-1);

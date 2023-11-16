@@ -12,8 +12,8 @@
  */
 struct FormatSpecifier
 {
-	char spec;
-	int (*handler_function)(va_list);
+	char *spec;
+	int (*func)(va_list);
 };
 
 /**
@@ -40,9 +40,6 @@ int print_hexadecimal(va_list list);
 int print_hex_upper(va_list list);
 int print_number(va_list);
 
-/*Memory address printing*/
-int print_memory_address(va_list args, ch
-
 /*Reverse string printing function*/
 int print_reversed(va_list args);
 
@@ -52,7 +49,7 @@ int print_rot13_string(va_list);
 /*UTILITY FUNCTIONS*/
 char *_memcpy(char *dest, char *src, unsigned int n);
 int print_unsigned_number(unsigned int);
-char rev_string(char *s);
+char *rev_string(char *s);
 unsigned int base_length(unsigned int, int);
 void write_base(char *str);
 #endif /* MAIN_H */

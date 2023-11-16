@@ -38,7 +38,7 @@ char *_memcpy(char *dest, char *src, unsigned int n)
  * @s: string to be reversed
  * Return: void
  */
-char rev_string(char *s)
+char *rev_string(char *s)
 {
 	int l, LengthOfString = 0;
 	char k;
