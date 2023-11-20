@@ -54,11 +54,11 @@ int print_integer(va_list list)
 }
 
 /**
- * unsigned_integer - Prints Unsigned integers
+ * print_unsigned - Prints Unsigned integers
  * @list: List of all of the argumets
  * Return: count of numbers
  */
-int unsigned_integer(va_list list)
+int print_unsigned(va_list list)
 {
 	unsigned int num;
 
