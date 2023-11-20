@@ -1,49 +1,55 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/*including standard C libraries*/
-#include <unistd.h>
-#include <stdio.h>
 #include <stdarg.h>
-
-/*define macros*/
-#define UNUSED_VARIABLE(x) (void)(x)
-#define BUFF_SIZE 1024
-
-/*define FLAGS*/
-#define FLAG_MINUS 1
-#define FLAG_PLUS 2
-#define FLAG_ZERO 4
-#define FLAG_HASH 8
-#define FLAG_SPACE 16
-
-/*define SIZES*/
-#define SIZE_LONG 2
-#define SIZE_SHORT 1
+#include <stdio.h>
+#include <unistd.h>
 
 /**
- * struct FormatSpecifier - Structure to represent a format specifier
- * @specifier: format specifier character
- * @handler_function: functon associated with the specifier
+ * struct FormatSpecifier - Structure for symbols and functions
+ * @spec: The format specifier character.
+ * @func: The function associated with the specifier.
  */
 struct FormatSpecifier
-
 {
-	char specifier;
-	int (*handler_function)(va_list, char[], int, int, int, int);
+	char *spec;
+	int (*func)(va_list);
 };
 
 /**
- * typedef FormatSpecifier format_t - Typedef for the FormatSpecifier
- * structure
+ * typedef FormatSpecifier format_t - Typedef for the FormatSpecifier structure
  */
 typedef struct FormatSpecifier format_t;
 
+/*FUNCTION PROTOTYPES*/
 int _printf(const char *format, ...);
-int process_format(const char *specifier, int *index, va_list arguments,
-		char buffer[], int flags, int width, int precision, int size);
+int _parser(const char *format, format_t func_list[], va_list arg_list);
 
-/*function implementatio*/
+/*Character and string functions*/
+int _putchar(char);
+int print_character(va_list);
+int print_string(va_list);
+int print_percent(va_list);
 
+/*Number printing functions*/
+int print_integer(va_list);
+int print_binary(va_list);
+int print_unsigned(va_list);
+int print_octal(va_list list);
+int print_hexadecimal(va_list list);
+int print_hex_upper(va_list list);
+int print_number(va_list);
 
-#endif /*MAIN_H*/
+/*Reverse string printing function*/
+int print_reversed(va_list args);
+
+/*Rot13 string printing function*/
+int print_rot13_string(va_list);
+
+/*UTILITY FUNCTIONS*/
+char *_memcpy(char *dest, char *src, unsigned int n);
+int print_unsigned_number(unsigned int);
+char *rev_string(char *s);
+unsigned int base_length(unsigned int, int);
+void write_base(char *str);
+#endif /* MAIN_H */
